@@ -7,20 +7,20 @@ import java.util.TimerTask;
 
 public class Main {
     public static void main(String args[]) {
-        String path="C:\\Users\\ajay1.kumar\\Desktop\\Test";
+        String path=Constants.sourceDirectory;
         TimerTask task = new DirWatcher(path ) {
-            protected void onChange(File file, String action )  {
-                // here we code the action on a change
-                System.out.println
-                        ( "File "+ file.getName() +" action: " + action );
+            @Override
+            protected void onChange(File file , String action) {
+
+                System.out.println("File "+file.getName()+" action : "+action);
 
                 if(action=="add" || action=="modify"){
-                    new BackUpFile().backUpFile(file);
+                    BackUpFolder.backUpFile(file);
                 }
             }
         };
 
         Timer timer = new Timer();
-        timer.schedule( task , new Date(), 1000 );
+        timer.schedule( task , new Date(), 20000 );
     }
 }
