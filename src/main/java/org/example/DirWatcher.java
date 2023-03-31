@@ -36,7 +36,7 @@ public abstract class DirWatcher extends TimerTask {
 
     @Override
     public void run() {
-       //fileArray= Arrays.stream(new File(dirPath).listFiles()).filter(file->file.isFile())
+       fileArray=new File(dirPath).listFiles();
 
        //checking if any file is added or modified
        checkForAddOrModify(fileArray);

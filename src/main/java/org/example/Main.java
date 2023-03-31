@@ -15,12 +15,18 @@ public class Main {
                 System.out.println("File "+file.getName()+" action : "+action);
 
                 if(action=="add" || action=="modify"){
-                    BackUpFolder.backUpFile(file);
+                    if(file.isFile()){
+                        BackUpFolder.backUpFile(file);
+                    }
+                    //update it later
+                    /*else{
+                        BackUpFolder.backUpDirectory(file.getAbsolutePath());
+                    }*/
                 }
             }
         };
 
         Timer timer = new Timer();
-        timer.schedule( task , new Date(), 20000 );
+        timer.schedule( task , new Date(), 1000 );
     }
 }
